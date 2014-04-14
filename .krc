@@ -1,0 +1,90 @@
+#my default aliases and system variables
+set -o vi
+#custom aliases
+alias fitbitd='fitbitd --log /tmp/fitbitd-kru.log'
+alias j='java '
+alias jdupdate='java -jar ~/.jd/jdupdate.jar'
+#alias cnltunnel='ssh -f kru@10.0.0.30 -L 9666:10.0.0.30:9666 -g -N'
+alias cnltunnel='ssh -L 9666:127.0.0.1:9666 kru@10.0.0.30 -N'
+alias soundsync='rsync -avzu  ~/multimedia/music/ 10.0.0.30:/home/kru/multimedia/music/'
+alias soundsyncweb='rsync -Pavzu  ~/multimedia/music/ wg.chao.ch:/home/kru/multimedia/music/'
+alias soundpull='rsync -avz --existing wg.chao.ch:/home/kru/multimedia/music/ ~/multimedia/music/'
+alias sharethis='python -c "import SimpleHTTPServer;SimpleHTTPServer.test()"'
+alias ncmpc="ncmpc -c"
+alias bdown="echo down > /proc/acpi/ibm/brightness"
+alias bup="echo up > /proc/acpi/ibm/brightness"
+alias modreload="rmmod $1 && modprobe $1"
+alias vi="vim"
+alias tmpget="cd /tmp && wget -c $1"
+alias sim="sudo vim"
+alias rndvim="vim -n /tmp/$RANDOM"
+alias sus="sudo su"
+alias sx="startx >& /dev/null &" #:)
+alias kslim="sudo /etc/rc.d/slim restart"
+alias wgetdircontent="wget -r -l inf -np -t 0 -nc -nd -R php,html $@"
+alias sshfs_cube_mm="sshfs cube:/mnt/tera/multimedia/ /mnt/sshfs/cube/"
+alias sshfs_cube="sshfs cube:/ /mnt/sshfs/cube"
+alias krsync="rsync -rvPt "
+#default aliases
+alias lsnc="ls --color=no"
+alias ls="ls  --color=y -F" # -F append indicator (one */=@I) to entries
+alias la="ls -la"
+alias ll="ls --color=n -l"
+alias l="ls -l"
+alias cls="clear; ls"
+#aliases for cowards
+alias cp="cp -i"
+alias mv="mv -i"
+alias rm="rm -i"
+
+
+#wlan
+alias autowlan='sudo netcfg-auto-wireless wlan0'
+alias wlandisable='sudo rmmod iwlagn iwlcore'
+alias wlanenable='sudo modprobe iwlagn ; sudo ifconfig wlan0 up'
+
+
+
+#svn aliases
+alias svnci="svn ci -m \"$(date) :  $USER\""
+alias svnsw="svn sw --relocate $1 $2"
+
+# some other alias functions 
+alias rootscreeny="import -window root rootimport.jpg"
+alias winscreeny="import winimport.jpg"
+
+
+#==============
+#VARIABLES
+#==============
+
+
+#extend the PATH var
+export PATH="${PATH}:$HOME/bin/:/opt/java/jre/bin/:"
+
+# default USER bash variables (VAR="foo")
+export PACKAGER="Mirko Messer [kru_] <mirk@chao.ch>"
+export EDITOR="vim"
+export VISUAL="vim"
+export SVN_EDITOR="vim"
+export LESS="-R"
+export BROWSER="chromium"
+
+#farben fuer less
+export LESS_TERMCAP_mb=$(printf "\e[1;37m")
+export LESS_TERMCAP_md=$(printf "\e[0;35m")
+export LESS_TERMCAP_me=$(printf "\e[0m")
+export LESS_TERMCAP_se=$(printf "\e[0m")
+export LESS_TERMCAP_so=$(printf "\e[1;47;30m")
+export LESS_TERMCAP_ue=$(printf "\e[0m")
+export LESS_TERMCAP_us=$(printf "\e[0;36m")
+
+# JAVAC CLASSPATH variabeln
+export CLASSPATH=.:~/data/hft-so/511_Info/libs/:
+
+#tomcat
+export CATALINA_HOME=/usr/share/tomcat7
+[[ -s $HOME/.tmuxinator/scripts/tmuxinator ]] && source $HOME/.tmuxinator/scripts/tmuxinator
+
+# git
+alias dit='git --git-dir=$HOME/.sysconf.git/ --work-tree=$HOME'
